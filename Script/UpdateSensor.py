@@ -37,4 +37,4 @@ if __name__ == '__main__':
             sensor.update(str(temp),str(humi))
         except:
             logging.info("There is something wrong")        
-        time.sleep(2)
+        time.sleep(60)
