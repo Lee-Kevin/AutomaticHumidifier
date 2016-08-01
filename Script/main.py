@@ -11,19 +11,22 @@ max_humi = 99
 if __name__ == '__main__':
 
     while True:
-        f = open("/tmp/Sensor/humi")
-        humi = f.read()
-        logging.info(humi)
-        if float(humi) < min_humi:
-            logging.info("Open the atomizer")
-            fs = open("/tmp/Sensor/atomizer","wb")
-            fs.write("1")
-            fs.close()
-        elif float(humi) > max_humi:
-            logging.info("Close the atomizer")
-            fs = open("/tmp/Sensor/atomizer","wb")
-            fs.write("0")
-            fs.close()            
-        logging.info("the humi is %s" % str(humi))
+        try:
+            f = open("/tmp/Sensor/humi")
+            humi = f.read()
+            logging.info(humi)
+            if float(humi) < min_humi:
+                logging.info("Open the atomizer")
+                fs = open("/tmp/Sensor/atomizer","wb")
+                fs.write("1")
+                fs.close()
+            elif float(humi) > max_humi:
+                logging.info("Close the atomizer")
+                fs = open("/tmp/Sensor/atomizer","wb")
+                fs.write("0")
+                fs.close()            
+            logging.info("the humi is %s" % str(humi))
+        except Exception,e:
+            logging.warn(e)
         time.sleep(60)
         
